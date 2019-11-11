@@ -20,9 +20,9 @@ def visualize(image_file):
     plt.setp(axes.flat, xticks = [], yticks = [])
     for i, ax in enumerate(axes.flat):
         if i % 2 == 0:
-            ax.imshow(input_image)
+            ax.imshow(input_image.numpy())
             ax.set_xlabel('Input_Image')
         else:
-            ax.imshow(real_image)
+            ax.imshow(real_image.numpy())
             ax.set_xlabel('Real_Image')
     plt.show()
