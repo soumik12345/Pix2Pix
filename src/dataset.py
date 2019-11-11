@@ -1,4 +1,5 @@
 import tensorflow as tf
+from config import *
 from matplotlib import pyplot as plt
 
 
@@ -14,8 +15,10 @@ def load(image_file):
     return input_image, real_image
 
 
-def visualize(image_file):
+def visualize(image_file, use_jitter = False):
     input_image, real_image = load(image_file)
+    if use_jitter:
+        input_image, real_image = random_jitter(input_image, real_image)
     fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize = (16, 16))
     plt.setp(axes.flat, xticks = [], yticks = [])
     for i, ax in enumerate(axes.flat):
