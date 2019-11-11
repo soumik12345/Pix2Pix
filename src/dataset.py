@@ -1,5 +1,6 @@
 import tensorflow as tf
 from config import *
+from os.path import join
 from matplotlib import pyplot as plt
 
 
