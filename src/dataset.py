@@ -86,14 +86,14 @@ def load_image_test(image_file):
 
 
 def get_datasets(path):
-    train_dataset = tf.data.Dataset.list_files(path + 'train/*.jpg')
+    train_dataset = tf.data.Dataset.list_files(join(path, 'train/*.jpg'))
     train_dataset = train_dataset.map(
         load_image_train,
         num_parallel_calls=tf.data.experimental.AUTOTUNE
     )
     train_dataset = train_dataset.shuffle(BUFFER_SIZE)
     train_dataset = train_dataset.batch(BATCH_SIZE)
-    test_dataset = tf.data.Dataset.list_files(path + 'test/*.jpg')
+    test_dataset = tf.data.Dataset.list_files(join(path, 'test/*.jpg'))
     test_dataset = test_dataset.map(load_image_test)
     test_dataset = test_dataset.batch(BATCH_SIZE)
     return train_dataset, test_dataset
