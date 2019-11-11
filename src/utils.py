@@ -1,5 +1,5 @@
 from config import *
-from os import join, dirname
+from os.path import join, dirname
 from tensorflow.keras.utils import get_file
 
 
