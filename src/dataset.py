@@ -1,4 +1,5 @@
 import tensorflow as tf
+from matplotlib import pyplot as plt
 
 
 def load(image_file):
