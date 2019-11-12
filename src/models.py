@@ -7,7 +7,7 @@ from tensorflow.keras.models import Model
 
 def Generator():
     down_stack = [
-        downsample_block(64, 4, apply_batchnorm=False),
+        downsample_block(64, 4, batch_norm=False),
         downsample_block(128, 4),
         downsample_block(256, 4),
         downsample_block(512, 4),
@@ -17,9 +17,9 @@ def Generator():
         downsample_block(512, 4),
     ]
     up_stack = [
-        upsample_block(512, 4, apply_dropout=True),
-        upsample_block(512, 4, apply_dropout=True),
-        upsample_block(512, 4, apply_dropout=True),
+        upsample_block(512, 4, dropout=True),
+        upsample_block(512, 4, dropout=True),
+        upsample_block(512, 4, dropout=True),
         upsample_block(512, 4),
         upsample_block(256, 4),
         upsample_block(128, 4),
