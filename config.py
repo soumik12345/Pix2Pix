@@ -5,6 +5,8 @@ IMG_HEIGHT = 256
 OUTPUT_CHANNELS = 3
 LAMBDA = 100
 EPOCHS = 150
+LEARNING_RATE = 2e-4
+LEARNING_RATE = 2e-4
 EXISTING_DATASETS = {
     'cityscapes' : 'https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz',
     'edges2handbags' : 'https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/edges2handbags.tar.gz',
