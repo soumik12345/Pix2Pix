@@ -51,7 +51,7 @@ def Generator():
 
 
 def Discriminator():
-    initializer = tf.random_normal_initializer(0., 0.02)
+    initializer = random_normal_initializer(0., 0.02)
     inp = Input(shape=[None, None, 3], name='input_image')
     tar = Input(shape=[None, None, 3], name='target_image')
     x = concatenate([inp, tar])
