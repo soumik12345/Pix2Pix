@@ -24,7 +24,7 @@ def get_checkpoint(
         discriminator_optimizer=discriminator_optimizer,
         generator=generator, discriminator=discriminator
     )
-    return checkpoint
+    return checkpoint, checkpoint_prefix
 
 
 def generate_images(model, test_input, tar):
@@ -40,45 +40,51 @@ def generate_images(model, test_input, tar):
     plt.show()
 
 
-@tf.function
-def train_step(input_image, target):
-    with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
-        gen_output = generator(input_image, training=True)
-        disc_real_output = discriminator([input_image, target], training=True)
-        disc_generated_output = discriminator([input_image, gen_output], training=True)
-        gen_loss = generator_loss(disc_generated_output, gen_output, target)
-        disc_loss = discriminator_loss(disc_real_output, disc_generated_output)
-    generator_gradients = gen_tape.gradient(
-        gen_loss,
-        generator.trainable_variables
-    )
-    discriminator_gradients = disc_tape.gradient(
-        disc_loss,
-        discriminator.trainable_variables
-    )
-    generator_optimizer.apply_gradients(
-        zip(
-            generator_gradients,
+def train(
+    discriminator, generator,
+    discriminator_optimizer,
+    generator_optimizer,
+    train_dataset, test_dataset):
+
+    @tf.function
+    def train_step(input_image, target):
+        with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
+            gen_output = generator(input_image, training=True)
+            disc_real_output = discriminator([input_image, target], training=True)
+            disc_generated_output = discriminator([input_image, gen_output], training=True)
+            gen_loss = generator_loss(disc_generated_output, gen_output, target)
+            disc_loss = discriminator_loss(disc_real_output, disc_generated_output)
+        generator_gradients = gen_tape.gradient(
+            gen_loss,
             generator.trainable_variables
         )
-    )
-    discriminator_optimizer.apply_gradients(
-        zip(
-            discriminator_gradients,
+        discriminator_gradients = disc_tape.gradient(
+            disc_loss,
             discriminator.trainable_variables
         )
-    )
+        generator_optimizer.apply_gradients(
+            zip(
+                generator_gradients,
+                generator.trainable_variables
+            )
+        )
+        discriminator_optimizer.apply_gradients(
+            zip(
+                discriminator_gradients,
+                discriminator.trainable_variables
+            )
+        )
 
 
-def fit(train_ds, epochs, test_ds):
-    for epoch in range(epochs):
-        start = time.time()
-        # Train
-        for input_image, target in train_ds:
-            train_step(input_image, target)
-        for example_input, example_target in test_ds.take(1):
-            generate_images(generator, example_input, example_target)
-        # saving (checkpoint) the model every 20 epochs
-        if (epoch + 1) % 20 == 0:
-            checkpoint.save(file_prefix = checkpoint_prefix)
-        print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time()-start))
+    def fit(train_ds, epochs, test_ds):
+        for epoch in range(epochs):
+            start = time.time()
+            # Train
+            for input_image, target in train_ds:
+                train_step(input_image, target)
+            for example_input, example_target in test_ds.take(1):
+                generate_images(generator, example_input, example_target)
+            # saving (checkpoint) the model every 20 epochs
+            if (epoch + 1) % 20 == 0:
+                checkpoint.save(file_prefix = checkpoint_prefix)
+            print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time()-start))
