@@ -8,6 +8,12 @@ from tensorflow.keras.layers import (
 
 
 def downsample_block(filters, kernel_size, batch_norm = True):
+    '''Pix2Pix Downsample Block
+    Params:
+        filters     -> Number of filters in the convolution layer
+        kernel_size -> Sizer of convolution kernel
+        batch_norm  -> Apply BatchNormalization (Flag)
+    '''
     initializer = random_normal_initializer(0.0, 0.02)
     block = Sequential()
     block.add(
@@ -24,6 +30,12 @@ def downsample_block(filters, kernel_size, batch_norm = True):
 
 
 def upsample_block(filters, kernel_size, dropout = False):
+    '''Pix2Pix Upsample Block
+    Params:
+        filters     -> Number of filters in the convolution layer
+        kernel_size -> Sizer of convolution kernel
+        dropout     -> Apply Dropout (Flag)
+    '''
     initializer = random_normal_initializer(0.0, 0.02)
     block = Sequential()
     block.add(
