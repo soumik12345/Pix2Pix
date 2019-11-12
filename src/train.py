@@ -17,3 +17,46 @@ def get_checkpoint(discriminator_optimizer, generator_optimizer, checkpoint_dir=
         generator=generator, discriminator=discriminator
     )
     return checkpoint
+
+
+def generate_images(model, test_input, tar):
+    prediction = model(test_input, training=True)
+    plt.figure(figsize=(15,15))
+    display_list = [test_input[0], tar[0], prediction[0]]
+    title = ['Input Image', 'Ground Truth', 'Predicted Image']
+    for i in range(3):
+        plt.subplot(1, 3, i+1)
+        plt.title(title[i])
+        plt.imshow(display_list[i] * 0.5 + 0.5)
+        plt.axis('off')
+    plt.show()
+
+
+@tf.function
+def train_step(input_image, target):
+    with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
+        gen_output = generator(input_image, training=True)
+        disc_real_output = discriminator([input_image, target], training=True)
+        disc_generated_output = discriminator([input_image, gen_output], training=True)
+        gen_loss = generator_loss(disc_generated_output, gen_output, target)
+        disc_loss = discriminator_loss(disc_real_output, disc_generated_output)
+    generator_gradients = gen_tape.gradient(
+        gen_loss,
+        generator.trainable_variables
+    )
+    discriminator_gradients = disc_tape.gradient(
+        disc_loss,
+        discriminator.trainable_variables
+    )
+    generator_optimizer.apply_gradients(
+        zip(
+            generator_gradients,
+            generator.trainable_variables
+        )
+    )
+    discriminator_optimizer.apply_gradients(
+        zip(
+            discriminator_gradients,
+            discriminator.trainable_variables
+        )
+    )
