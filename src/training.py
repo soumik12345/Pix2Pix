@@ -9,6 +9,7 @@ from tensorflow.keras.optimizers import Adam
 
 
 def get_optimizers():
+    '''Build optimizers for Generator and Discriminator'''
     generator_optimizer = Adam(LEARNING_RATE, beta_1=0.5)
     discriminator_optimizer = Adam(LEARNING_RATE, beta_1=0.5)
     return discriminator_optimizer, generator_optimizer
@@ -20,6 +21,15 @@ def get_checkpoint(
     generator_optimizer,
     checkpoint_dir='./training_checkpoints'):
     
+    '''Get Training Checkpoint
+    Params:
+        discriminator           -> Discriminator
+        generator               -> Generator
+        discriminator_optimizer -> Discriminator Optimizer
+        generator_optimizer     -> Generator Optimizer
+        checkpoint_dir          -> Checkpoint Directory
+    '''
+    
     checkpoint_prefix = join(checkpoint_dir, 'ckpt')
     checkpoint = tf.train.Checkpoint(
         generator_optimizer=generator_optimizer,
@@ -30,6 +40,12 @@ def get_checkpoint(
 
 
 def generate_images(model, test_input, tar):
+    '''Generate Images
+    Params:
+        model       -> Generator Model
+        test_input  -> Input Image for testing
+        tar         -> Target Ground Truth
+    '''
     prediction = model(test_input, training=True)
     plt.figure(figsize=(15,15))
     display_list = [test_input[0], tar[0], prediction[0]]
@@ -48,6 +64,18 @@ def train(
     generator_optimizer,
     train_dataset, test_dataset,
     checkpoint, checkpoint_prefix):
+
+    '''Training Function
+    Params:
+        discriminator           -> Discriminator
+        generator               -> Generator
+        discriminator_optimizer -> Discriminator Optimizer
+        generator_optimizer     -> Generator Optimizer
+        train_dataset           -> Train Dataset
+        test_dataset            -> Test Dataset
+        checkpoint              -> Checkpoint Object
+        checkpoint_prefix       -> Checkpoint Prefix
+    '''
 
     generator_loss_history, discriminator_loss_history = [], []
 

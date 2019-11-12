@@ -9,6 +9,9 @@ from tensorflow.keras.models import Model
 
 
 def Generator():
+    '''Encoder-Decoder Based Generator Model
+    Reference: https://arxiv.org/abs/1511.06434
+    '''
     down_stack = [
         downsample_block(64, 4, batch_norm=False),
         downsample_block(128, 4),
@@ -51,6 +54,9 @@ def Generator():
 
 
 def Discriminator():
+    '''Markovian Discriminator (PatchGAN)
+    Reference: https://arxiv.org/abs/1604.04382
+    '''
     initializer = random_normal_initializer(0., 0.02)
     inp = Input(shape=[None, None, 3], name='input_image')
     tar = Input(shape=[None, None, 3], name='target_image')
