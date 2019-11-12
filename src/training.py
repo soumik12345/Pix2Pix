@@ -3,6 +3,7 @@ from config import *
 from .losses import *
 from os.path import join
 import tensorflow as tf
+from tqdm import tqdm
 from matplotlib import pyplot as plt
 from tensorflow.keras.optimizers import Adam
 
@@ -87,7 +88,7 @@ def train(
 
 
     def fit(train_ds, test_ds, epochs):
-        for epoch in range(epochs):
+        for epoch in tqdm(range(epochs)):
             start = time.time()
             # Train
             for input_image, target in train_ds:
