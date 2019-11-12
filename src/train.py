@@ -1,7 +1,6 @@
 import time
 from config import *
 from os.path import join
-from tensorflow.train import Checkpoint
 from tensorflow.keras.optimizers import Adam
 
 
