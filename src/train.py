@@ -1,5 +1,6 @@
 import time
 from config import *
+from .losses import *
 from os.path import join
 import tensorflow as tf
 from tensorflow.keras.optimizers import Adam
