@@ -1,3 +1,5 @@
+import time
+from config import *
 from os.path import join
 from tensorflow.train import Checkpoint
 from tensorflow.keras.optimizers import Adam
@@ -60,3 +62,17 @@ def train_step(input_image, target):
             discriminator.trainable_variables
         )
     )
+
+
+def fit(train_ds, epochs, test_ds):
+    for epoch in range(epochs):
+        start = time.time()
+        # Train
+        for input_image, target in train_ds:
+            train_step(input_image, target)
+        for example_input, example_target in test_ds.take(1):
+            generate_images(generator, example_input, example_target)
+        # saving (checkpoint) the model every 20 epochs
+        if (epoch + 1) % 20 == 0:
+            checkpoint.save(file_prefix = checkpoint_prefix)
+        print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time()-start))
