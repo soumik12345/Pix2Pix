@@ -11,7 +11,12 @@ def get_optimizers():
     return discriminator_optimizer, generator_optimizer
 
 
-def get_checkpoint(discriminator_optimizer, generator_optimizer, checkpoint_dir='./training_checkpoints'):
+def get_checkpoint(
+    discriminator, generator,
+    discriminator_optimizer,
+    generator_optimizer,
+    checkpoint_dir='./training_checkpoints'):
+    
     checkpoint_prefix = join(checkpoint_dir, 'ckpt')
     checkpoint = tf.train.Checkpoint(
         generator_optimizer=generator_optimizer,
