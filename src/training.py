@@ -44,16 +44,25 @@ def train(
     discriminator, generator,
     discriminator_optimizer,
     generator_optimizer,
-    train_dataset, test_dataset):
+    train_dataset, test_dataset,
+    checkpoint, checkpoint_prefix):
+
+    generator_loss_history, discriminator_loss_history = [], []
 
     @tf.function
     def train_step(input_image, target):
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
             gen_output = generator(input_image, training=True)
+            
             disc_real_output = discriminator([input_image, target], training=True)
             disc_generated_output = discriminator([input_image, gen_output], training=True)
+            
             gen_loss = generator_loss(disc_generated_output, gen_output, target)
             disc_loss = discriminator_loss(disc_real_output, disc_generated_output)
+            
+            generator_loss_history.append(gen_loss)
+            discriminator_loss_history.append(disc_loss)
+        
         generator_gradients = gen_tape.gradient(
             gen_loss,
             generator.trainable_variables
@@ -76,7 +85,7 @@ def train(
         )
 
 
-    def fit(train_ds, epochs, test_ds):
+    def fit(train_ds, test_ds, epochs):
         for epoch in range(epochs):
             start = time.time()
             # Train
@@ -88,3 +97,8 @@ def train(
             if (epoch + 1) % 20 == 0:
                 checkpoint.save(file_prefix = checkpoint_prefix)
             print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time()-start))
+    
+
+    fit(train_dataset, test_dataset, EPOCHS)
+    
+    return generator_loss_history, discriminator_loss_history
