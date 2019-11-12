@@ -55,9 +55,9 @@ def Discriminator():
     inp = Input(shape=[None, None, 3], name='input_image')
     tar = Input(shape=[None, None, 3], name='target_image')
     x = concatenate([inp, tar])
-    down1 = downsample(64, 4, False)(x)
-    down2 = downsample(128, 4)(down1)
-    down3 = downsample(256, 4)(down2)
+    down1 = downsample_block(64, 4, False)(x)
+    down2 = downsample_block(128, 4)(down1)
+    down3 = downsample_block(256, 4)(down2)
     zero_pad1 = ZeroPadding2D()(down3)
     conv = Conv2D(
         512, 4, strides=1,
