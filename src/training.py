@@ -3,6 +3,7 @@ from config import *
 from .losses import *
 from os.path import join
 import tensorflow as tf
+from matplotlib import pyplot as plt
 from tensorflow.keras.optimizers import Adam
 
 
@@ -100,5 +101,5 @@ def train(
     
 
     fit(train_dataset, test_dataset, EPOCHS)
-    
+
     return generator_loss_history, discriminator_loss_history
