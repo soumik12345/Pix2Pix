@@ -55,3 +55,13 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 ![Result 1](./assets/maps_pred_1.png)
 ![Result 2](./assets/maps_pred_2.png)
 ![Result 3](./assets/maps_pred_3.png)
+
+## References
+
+All the sources cited during building this codebase are mentioned below:
+
+- [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004.pdf)
+- [https://github.com/phillipi/pix2pix](https://github.com/phillipi/pix2pix)
+- [Precomputed Real-Time Texture Synthesis with Markovian Generative Adversarial Networks](https://arxiv.org/abs/1604.04382)
+- [Tensorflow Pix2Pix](https://github.com/tensorflow/docs/blob/master/site/en/tutorials/generative/pix2pix.ipynb)
+- [Keras Pix2Pix](https://github.com/eriklindernoren/Keras-GAN/blob/master/pix2pix/pix2pix.py)
