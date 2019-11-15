@@ -28,13 +28,13 @@ Tensorflow Implementation of the paper [Image-to-Image Translation using Conditi
 
 The Loss function can also be boiled down to
 
-```Loss = GAN_Loss + Lambda * L1_Loss, where GAN_Loss is Sigmoid Cross Entropy Loss and Lambda = 100``` (determined by the authors)
+```Loss = GAN_Loss + Lambda * L1_Loss```, where GAN_Loss is Sigmoid Cross Entropy Loss and Lambda = 100 (determined by the authors)
 
 ### Discriminator Loss
 
 The Discriminator Loss function can be written as
 
-```Loss = disc_loss(real_images, array of ones) + disc_loss(generated_images, array of ones)```
+```Loss = disc_loss(real_images, array of ones) + disc_loss(generated_images, array of zeros)```
 
 where `disc_loss` is Sigmoid Cross Entropy Loss.
 
