@@ -121,12 +121,12 @@ def train(
             # Train
             for input_image, target in train_ds:
                 train_step(input_image, target)
-            for example_input, example_target in test_ds.take(1):
-                generate_images(generator, example_input, example_target)
-            # saving (checkpoint) the model every 20 epochs
+            # saving (checkpoint) the model and sample prediction every 20 epochs
             if (epoch + 1) % 20 == 0:
                 checkpoint.save(file_prefix = checkpoint_prefix)
-            print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time()-start))
+                for example_input, example_target in test_ds.take(1):
+                    generate_images(generator, example_input, example_target)
+            print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time() - start))
     
 
     fit(train_dataset, test_dataset, EPOCHS)
