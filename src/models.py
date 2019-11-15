@@ -10,7 +10,7 @@ from tensorflow.keras.models import Model
 
 def Generator():
     '''Encoder-Decoder Based Generator Model
-    Reference: https://arxiv.org/abs/1511.06434
+    Reference: https://arxiv.org/pdf/1611.07004.pdf
     '''
     down_stack = [
         downsample_block(64, 4, batch_norm=False),
