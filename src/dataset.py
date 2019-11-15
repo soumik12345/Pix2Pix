@@ -28,7 +28,7 @@ def visualize(image_file, augment = False):
     '''
     input_image, real_image = load(image_file)
     if augment:
-        input_image, real_image = random_jitter(input_image, real_image)
+        input_image, real_image = augmentation(input_image, real_image)
     fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize = (16, 16))
     plt.setp(axes.flat, xticks = [], yticks = [])
     for i, ax in enumerate(axes.flat):
@@ -86,7 +86,7 @@ def normalize(input_image, real_image):
 
 
 @tf.function()
-def random_jitter(input_image, real_image):
+def augmentation(input_image, real_image):
     '''Apply random augmentation
     Params:
         input_image -> Input Image
@@ -106,7 +106,7 @@ def load_image_train(image_file):
         image_file  -> Path to an image file
     '''
     input_image, real_image = load(image_file)
-    input_image, real_image = random_jitter(input_image, real_image)
+    input_image, real_image = augmentation(input_image, real_image)
     input_image, real_image = normalize(input_image, real_image)
     return input_image, real_image
 
