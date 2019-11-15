@@ -116,11 +116,13 @@ def train(
 
 
     def fit(train_ds, test_ds, epochs):
-        for epoch in tqdm(range(epochs)):
+        for epoch in range(epochs):
             start = time.time()
             # Train
-            for input_image, target in train_ds:
+            print('Epoch', str(epoch + 1), 'going on....')
+            for input_image, target in tqdm(train_ds):
                 train_step(input_image, target)
+            print('Completed.')
             # saving (checkpoint) the model and sample prediction every 20 epochs
             if (epoch + 1) % 20 == 0:
                 checkpoint.save(file_prefix = checkpoint_prefix)
