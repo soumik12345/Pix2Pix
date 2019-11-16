@@ -26,10 +26,10 @@ def Generator():
         upsample_block(512, 4, dropout=True, use_config_activation=True),
         upsample_block(512, 4, dropout=True, use_config_activation=True),
         upsample_block(512, 4, dropout=True, use_config_activation=True),
-        upsample_block(512, 4),
-        upsample_block(256, 4),
-        upsample_block(128, 4),
-        upsample_block(64, 4),
+        upsample_block(512, 4, use_config_activation=True),
+        upsample_block(256, 4, use_config_activation=True),
+        upsample_block(128, 4, use_config_activation=True),
+        upsample_block(64, 4, use_config_activation=True),
     ]
     initializer = random_normal_initializer(0., 0.02)
     last = Conv2DTranspose(
