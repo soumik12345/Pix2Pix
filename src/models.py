@@ -2,7 +2,7 @@ from .blocks import *
 from config import *
 from tensorflow import random_normal_initializer
 from tensorflow.keras.layers import (
-    Conv2DTranspose, Concatenate, Input, Activation
+    Conv2DTranspose, Concatenate, Input, Activation,
     concatenate, BatchNormalization, ZeroPadding2D, LeakyReLU
 )
 from tensorflow.keras.models import Model
