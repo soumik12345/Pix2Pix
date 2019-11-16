@@ -40,6 +40,8 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 ## [Experiment 1](./Pix2Pix_Facades.ipynb)
 
+**Resource Credits:** Trained on Nvidia Quadro M4000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
+
 **Dataset:** [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/facades.tar.gz)
 
 **Generator Architecture:**
@@ -58,6 +60,8 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 ![Experiment 1 Result](./assets/exp_1_gif.gif)
 
 ## [Experiment 2](./Pix2Pix_Maps.ipynb)
+
+**Resource Credits:** Trained on Nvidia Quadro P5000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
 
 **Dataset:** [Maps](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
 
@@ -78,6 +82,8 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 ## [Experiment 3](./Pix2Pix_Cityscapes.ipynb)
 
+**Resource Credits:** Trained on Nvidia Tesla V100 provided by [DeepWrex Technologies](https://deepwrex.com/).
+
 **Dataset:** [Cityscapes](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz)
 
 **Generator Architecture:**
@@ -95,6 +101,27 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 ![Experiment 3 Result](./assets/exp_3_gif.gif)
 
+## [Experiment 4](./Pix2Pix_Facades_Mish.ipynb)
+
+**Resource Credits:** Trained on Nvidia Quadro P5000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
+
+**Dataset:** [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/facades.tar.gz)
+
+**Generator Architecture:**
+
+- The Generator is a Unet-Like model with skip connections between encoder and decoder.
+- Encoder Block is ```Convolution -> BatchNormalization -> Activation (Mish)```
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (Mish)```
+
+**Discriminator:**
+
+- PatchGAN Discriminator
+- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (Mish)```
+
+**Result:**
+
+![Experiment 4 Result](./assets/exp_4_gif.gif)
+
 ## References
 
 All the sources cited during building this codebase are mentioned below:
@@ -102,5 +129,6 @@ All the sources cited during building this codebase are mentioned below:
 - [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004.pdf)
 - [https://github.com/phillipi/pix2pix](https://github.com/phillipi/pix2pix)
 - [Precomputed Real-Time Texture Synthesis with Markovian Generative Adversarial Networks](https://arxiv.org/abs/1604.04382)
+- [Mish: A Self Regularized Non-Monotonic Neural Activation Function](https://arxiv.org/abs/1908.08681)
 - [Tensorflow Pix2Pix](https://github.com/tensorflow/docs/blob/master/site/en/tutorials/generative/pix2pix.ipynb)
 - [Keras Pix2Pix](https://github.com/eriklindernoren/Keras-GAN/blob/master/pix2pix/pix2pix.py)
