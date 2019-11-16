@@ -56,6 +56,12 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 ![Result 2](./assets/maps_pred_2.png)
 ![Result 3](./assets/maps_pred_3.png)
 
+## Experiment 3: [Cityscapes](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz)
+
+![Result 1](./assets/cityscapes_pred_1.png)
+![Result 2](./assets/cityscapes_pred_2.png)
+![Result 3](./assets/cityscapes_pred_3.png)
+
 ## References
 
 All the sources cited during building this codebase are mentioned below:
