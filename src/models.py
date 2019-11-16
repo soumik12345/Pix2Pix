@@ -2,7 +2,7 @@ from .blocks import *
 from config import *
 from tensorflow import random_normal_initializer
 from tensorflow.keras.layers import (
-    Conv2DTranspose, Concatenate, Input,
+    Conv2DTranspose, Concatenate, Input, Activation
     concatenate, BatchNormalization, ZeroPadding2D, LeakyReLU
 )
 from tensorflow.keras.models import Model
@@ -71,7 +71,10 @@ def Discriminator():
         use_bias=False
     )(zero_pad1)
     batchnorm1 = BatchNormalization()(conv)
-    leaky_relu = LeakyReLU()(batchnorm1)
+    if ACTIVATION != '':
+        leaky_relu = Activation(ACTIVATION)(batchnorm1)
+    else:
+        leaky_relu = LeakyReLU()(batchnorm1)
     zero_pad2 = ZeroPadding2D()(leaky_relu)
     last = Conv2D(
         1, 4, strides=1,

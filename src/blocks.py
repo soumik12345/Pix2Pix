@@ -1,3 +1,4 @@
+from config import *
 import tensorflow as tf
 from tensorflow import random_normal_initializer
 from tensorflow.keras import Sequential
@@ -28,7 +29,10 @@ def downsample_block(filters, kernel_size, batch_norm = True):
     )
     if batch_norm:
         block.add(BatchNormalization())
-    block.add(LeakyReLU())
+    if ACTIVATION != '':
+        block.add(Activation(ACTIVATION))
+    else:
+        block.add(LeakyReLU())
     return block
 
 
@@ -52,7 +56,10 @@ def upsample_block(filters, kernel_size, dropout = False):
     block.add(BatchNormalization())
     if dropout:
         block.add(Dropout(0.5))
-    block.add(ReLU())
+    if ACTIVATION != '':
+        block.add(Activation(ACTIVATION))
+    else:
+        block.add(ReLU())
     return block
 
 
