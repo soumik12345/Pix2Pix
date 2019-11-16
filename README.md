@@ -38,21 +38,60 @@ The Discriminator Loss function can be written as
 
 where `disc_loss` is Sigmoid Cross Entropy Loss.
 
-## Training Procedure
+## [Experiment 1](./Pix2Pix_Facades.ipynb)
 
-- Input Image is given to Generator which gives the generated image
-- Discriminator recieves the (Input Image, Generated Image) and (Input Image, Target Image or Ground Truth)
-- Compute Loss and Gradients (which are applied to the respective optimizer)
+**Dataset:** [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/facades.tar.gz)
 
-## Experiment 1: [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/facades.tar.gz)
+**Generator Architecture:**
+
+- The Generator is a Unet-Like model with skip connections between encoder and decoder.
+- Encoder Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
+
+**Discriminator:**
+
+- PatchGAN Discriminator
+- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
+
+**Result:**
 
 ![Experiment 1 Result](./assets/exp_1_gif.gif)
 
-## Experiment 2: [Maps](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
+## [Experiment 2](./Pix2Pix_Maps.ipynb)
+
+**Dataset:** [Maps](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
+
+**Generator Architecture:**
+
+- The Generator is a Unet-Like model with skip connections between encoder and decoder.
+- Encoder Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
+
+**Discriminator:**
+
+- PatchGAN Discriminator
+- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
+
+**Result:**
 
 ![Experiment 2 Result](./assets/exp_2_gif.gif)
 
-## Experiment 3: [Cityscapes](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz)
+## [Experiment 3](./Pix2Pix_Cityscapes.ipynb)
+
+**Dataset:** [Cityscapes](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz)
+
+**Generator Architecture:**
+
+- The Generator is a Unet-Like model with skip connections between encoder and decoder.
+- Encoder Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
+
+**Discriminator:**
+
+- PatchGAN Discriminator
+- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
+
+**Result:**
 
 ![Experiment 3 Result](./assets/exp_3_gif.gif)
 
