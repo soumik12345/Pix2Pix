@@ -13,14 +13,14 @@ def Generator():
     Reference: https://arxiv.org/pdf/1611.07004.pdf
     '''
     down_stack = [
-        downsample_block_generator(64, 4, batch_norm=False, use_config_activation=True),
-        downsample_block_generator(128, 4, use_config_activation=True),
-        downsample_block_generator(256, 4, use_config_activation=True),
-        downsample_block_generator(512, 4, use_config_activation=True),
-        downsample_block_generator(512, 4, use_config_activation=True),
-        downsample_block_generator(512, 4, use_config_activation=True),
-        downsample_block_generator(512, 4, use_config_activation=True),
-        downsample_block_generator(512, 4, use_config_activation=True),
+        downsample_block(64, 4, batch_norm=False, use_config_activation=True),
+        downsample_block(128, 4, use_config_activation=True),
+        downsample_block(256, 4, use_config_activation=True),
+        downsample_block(512, 4, use_config_activation=True),
+        downsample_block(512, 4, use_config_activation=True),
+        downsample_block(512, 4, use_config_activation=True),
+        downsample_block(512, 4, use_config_activation=True),
+        downsample_block(512, 4, use_config_activation=True),
     ]
     up_stack = [
         upsample_block(512, 4, dropout=True, use_config_activation=True),
@@ -61,9 +61,9 @@ def Discriminator():
     inp = Input(shape=[None, None, 3], name='input_image')
     tar = Input(shape=[None, None, 3], name='target_image')
     x = concatenate([inp, tar])
-    down1 = downsample_block_discriminator(64, 4, False)(x)
-    down2 = downsample_block_discriminator(128, 4, )(down1)
-    down3 = downsample_block_discriminator(256, 4)(down2)
+    down1 = downsample_block(64, 4, False)(x)
+    down2 = downsample_block(128, 4, )(down1)
+    down3 = downsample_block(256, 4)(down2)
     zero_pad1 = ZeroPadding2D()(down3)
     conv = Conv2D(
         512, 4, strides=1,

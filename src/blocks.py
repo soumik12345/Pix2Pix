@@ -10,7 +10,7 @@ from tensorflow.keras.layers import (
 from tensorflow.keras.utils import get_custom_objects
 
 
-def downsample_block_generator(filters, kernel_size, batch_norm = True, use_config_activation = False):
+def downsample_block(filters, kernel_size, batch_norm = True, use_config_activation = False):
     '''Pix2Pix Downsample Block for building the generator
     Reference: https://arxiv.org/abs/1611.07004
     Params:
@@ -35,31 +35,6 @@ def downsample_block_generator(filters, kernel_size, batch_norm = True, use_conf
         block.add(LeakyReLU())
     return block
 
-
-def downsample_block_discriminator(filters, kernel_size, batch_norm = True, use_config_activation = False):
-    '''Pix2Pix Downsample Block for building the generator
-    Reference: https://arxiv.org/abs/1611.07004
-    Params:
-        filters     -> Number of filters in the convolution layer
-        kernel_size -> Sizer of convolution kernel
-        batch_norm  -> Apply BatchNormalization (Flag)
-    '''
-    initializer = random_normal_initializer(0.0, 0.02)
-    block = Sequential()
-    block.add(
-        Conv2D(
-            filters, kernel_size,
-            strides=2, padding='same',
-            kernel_initializer=initializer, use_bias=False
-        )
-    )
-    if batch_norm:
-        block.add(BatchNormalization())
-    if use_config_activation:
-        block.add(Activation(ACTIVATION))
-    else:
-        block.add(LeakyReLU())
-    return block
 
 
 def upsample_block(filters, kernel_size, dropout = False, use_config_activation = False):
