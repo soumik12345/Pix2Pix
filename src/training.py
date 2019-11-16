@@ -63,7 +63,8 @@ def train(
     discriminator_optimizer,
     generator_optimizer,
     train_dataset, test_dataset,
-    checkpoint, checkpoint_prefix):
+    checkpoint, checkpoint_prefix,
+    checkpoint_step = 10):
 
     '''Training Function
     Params:
@@ -124,7 +125,7 @@ def train(
                 train_step(input_image, target)
             print('Completed.')
             # saving (checkpoint) the model and sample prediction every 20 epochs
-            if (epoch + 1) % 20 == 0:
+            if (epoch + 1) % checkpoint_step == 0:
                 checkpoint.save(file_prefix = checkpoint_prefix)
                 for example_input, example_target in test_ds.take(1):
                     generate_images(generator, example_input, example_target)
