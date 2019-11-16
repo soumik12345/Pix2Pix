@@ -46,21 +46,15 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 ## Experiment 1: [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/facades.tar.gz)
 
-![Result 1](./assets/facades_pred_1.png)
-![Result 2](./assets/facades_pred_2.png)
-![Result 3](./assets/facades_pred_3.png)
+![Experiment 1 Result](./assets/exp_1_gif.gif)
 
 ## Experiment 2: [Maps](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
 
-![Result 1](./assets/maps_pred_1.png)
-![Result 2](./assets/maps_pred_2.png)
-![Result 3](./assets/maps_pred_3.png)
+![Experiment 2 Result](./assets/exp_2_gif.gif)
 
 ## Experiment 3: [Cityscapes](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz)
 
-![Result 1](./assets/cityscapes_pred_1.png)
-![Result 2](./assets/cityscapes_pred_2.png)
-![Result 3](./assets/cityscapes_pred_3.png)
+![Experiment 3 Result](./assets/exp_3_gif.gif)
 
 ## References
 
