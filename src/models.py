@@ -49,7 +49,7 @@ def Generator():
         x = up(x)
         x = concat([x, skip])
     x = last(x)
-    return Model(inputs=inputs, outputs=x)
+    return Model(inputs=inputs, outputs=x, name='Generator')
 
 
 
@@ -77,4 +77,4 @@ def Discriminator():
         1, 4, strides=1,
         kernel_initializer=initializer
     )(zero_pad2)
-    return Model(inputs=[inp, tar], outputs=last)
+    return Model(inputs=[inp, tar], outputs=last, name='Discriminator')
