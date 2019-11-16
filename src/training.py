@@ -64,7 +64,7 @@ def train(
     generator_optimizer,
     train_dataset, test_dataset,
     checkpoint, checkpoint_prefix,
-    checkpoint_step = 10):
+    checkpoint_step = 10, save_checkpoints = False):
 
     '''Training Function
     Params:
@@ -126,7 +126,8 @@ def train(
             print('Completed.')
             # saving (checkpoint) the model and sample prediction every 20 epochs
             if (epoch + 1) % checkpoint_step == 0:
-                checkpoint.save(file_prefix = checkpoint_prefix)
+                if save_checkpoints:
+                    checkpoint.save(file_prefix = checkpoint_prefix)
                 for example_input, example_target in test_ds.take(1):
                     generate_images(generator, example_input, example_target)
             print ('Time taken for epoch {} is {} sec\n'.format(epoch + 1, time.time() - start))
