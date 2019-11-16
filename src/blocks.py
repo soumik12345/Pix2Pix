@@ -7,7 +7,7 @@ from tensorflow.keras.layers import (
     BatchNormalization, ReLU,
     Conv2D, LeakyReLU, Activation
 )
-from tensorflow.keras.generic_utils import get_custom_objects
+from tensorflow.keras.utils import get_custom_objects
 
 
 def downsample_block(filters, kernel_size, batch_norm = True):
