@@ -2,7 +2,7 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/soumik12345/Pix2Pix/master)
 
-Tensorflow Implementation of the paper [Image-to-Image Translation using Conditional GANs](https://arxiv.org/abs/1611.07004) by [Philip Isola](https://arxiv.org/search/cs?searchtype=author&query=Isola%2C+P), [Jun-Yan Zhu](https://arxiv.org/search/cs?searchtype=author&query=Zhu%2C+J), [Tinghui Zhou](https://arxiv.org/search/cs?searchtype=author&query=Zhou%2C+T) and [Alexei A. Efros](https://arxiv.org/search/cs?searchtype=author&query=Efros%2C+A+A).
+Tensorflow 2.0 Implementation of the paper [Image-to-Image Translation using Conditional GANs](https://arxiv.org/abs/1611.07004) by [Philip Isola](https://arxiv.org/search/cs?searchtype=author&query=Isola%2C+P), [Jun-Yan Zhu](https://arxiv.org/search/cs?searchtype=author&query=Zhu%2C+J), [Tinghui Zhou](https://arxiv.org/search/cs?searchtype=author&query=Zhou%2C+T) and [Alexei A. Efros](https://arxiv.org/search/cs?searchtype=author&query=Efros%2C+A+A).
 
 
 ## Architecture
@@ -114,7 +114,28 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 **Result:**
 
-![Experiment 1 Mish Result](./assets/mish_exp_2.gif)
+![Experiment 2 Mish Result](./assets/mish_exp_2.gif)
+
+### [Experiment 3 Mish](./Pix2Pix_Maps_Mish.ipynb)
+
+**Resource Credits:** Trained on Nvidia Quadro P5000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
+
+**Dataset:** [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
+
+**Generator Architecture:**
+
+- The Generator is a Unet-Like model with skip connections between encoder and decoder.
+- Encoder Block is ```Convolution -> BatchNormalization -> Activation (Mish)```
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (Mish)``` for the first three blocks are ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
+
+**Discriminator:**
+
+- PatchGAN Discriminator
+- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (ReLU)```
+
+**Result:**
+
+![Experiment 3 Mish Result](./assets/mish_exp_3.gif)
 
 ## References
 
