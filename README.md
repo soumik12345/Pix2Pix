@@ -103,7 +103,7 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 - The Generator is a Unet-Like model with skip connections between encoder and decoder.
 - Encoder Block is ```Convolution -> BatchNormalization -> Activation (Mish)```
-- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (Mish)``` for the 1st three blocks.
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (Mish)```
 
 **Discriminator:**
 
