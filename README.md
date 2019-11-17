@@ -38,70 +38,41 @@ The Discriminator Loss function can be written as
 
 where `disc_loss` is Sigmoid Cross Entropy Loss.
 
-## [Experiment 1](./Pix2Pix_Facades.ipynb)
+## Experiments with Standard Architecture
+
+### [Experiment 1](./Pix2Pix_Facades.ipynb)
 
 **Resource Credits:** Trained on Nvidia Quadro M4000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
 
 **Dataset:** [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/facades.tar.gz)
 
-**Generator Architecture:**
-
-- The Generator is a Unet-Like model with skip connections between encoder and decoder.
-- Encoder Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
-- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
-
-**Discriminator:**
-
-- PatchGAN Discriminator
-- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
-
 **Result:**
 
 ![Experiment 1 Result](./assets/exp_1_gif.gif)
 
-## [Experiment 2](./Pix2Pix_Maps.ipynb)
+### [Experiment 2](./Pix2Pix_Maps.ipynb)
 
 **Resource Credits:** Trained on Nvidia Quadro P5000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
 
 **Dataset:** [Maps](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
 
-**Generator Architecture:**
-
-- The Generator is a Unet-Like model with skip connections between encoder and decoder.
-- Encoder Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
-- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
-
-**Discriminator:**
-
-- PatchGAN Discriminator
-- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
-
 **Result:**
 
 ![Experiment 2 Result](./assets/exp_2_gif.gif)
 
-## [Experiment 3](./Pix2Pix_Cityscapes.ipynb)
+### [Experiment 3](./Pix2Pix_Cityscapes.ipynb)
 
 **Resource Credits:** Trained on Nvidia Tesla V100 provided by [DeepWrex Technologies](https://deepwrex.com/).
 
 **Dataset:** [Cityscapes](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/cityscapes.tar.gz)
 
-**Generator Architecture:**
-
-- The Generator is a Unet-Like model with skip connections between encoder and decoder.
-- Encoder Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
-- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (ReLU)```
-
-**Discriminator:**
-
-- PatchGAN Discriminator
-- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (LeakyReLU)```
-
 **Result:**
 
 ![Experiment 3 Result](./assets/exp_3_gif.gif)
 
-## [Experiment 4](./Pix2Pix_Facades_Mish.ipynb)
+## Experiments with Mish Activation Function
+
+### [Experiment 1 Mish](./Pix2Pix_Facades_Mish.ipynb)
 
 **Resource Credits:** Trained on Nvidia Quadro P5000 provided by [Paperspace Gradient](https://gradient.paperspace.com/).
 
@@ -120,7 +91,28 @@ where `disc_loss` is Sigmoid Cross Entropy Loss.
 
 **Result:**
 
-![Experiment 4 Result](./assets/exp_4_gif.gif)
+![Experiment 1 Mish Result](./assets/mish_exp_1.gif)
+
+### [Experiment 2 Mish](./Pix2Pix_Maps_Mish.ipynb)
+
+**Resource Credits:** Trained on Nvidia Tesla P100 provided by [Google Colab](https://colab.research.google.com/).
+
+**Dataset:** [Facades](https://people.eecs.berkeley.edu/~tinghuiz/projects/pix2pix/datasets/maps.tar.gz)
+
+**Generator Architecture:**
+
+- The Generator is a Unet-Like model with skip connections between encoder and decoder.
+- Encoder Block is ```Convolution -> BatchNormalization -> Activation (Mish)```
+- Decode Blocks is ```Conv2DTranspose -> BatchNormalization -> Dropout (optional) -> Activation (Mish)``` for the 1st three blocks.
+
+**Discriminator:**
+
+- PatchGAN Discriminator
+- Discriminator Block is ```Convolution -> BatchNormalization -> Activation (ReLU)```
+
+**Result:**
+
+![Experiment 1 Mish Result](./assets/mish_exp_2.gif)
 
 ## References
 
