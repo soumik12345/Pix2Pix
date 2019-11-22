@@ -17,7 +17,11 @@ def load(image_file):
         real_image = image[:, : w, :]
         input_image = image[:, w :, :]
     elif DATASET_TYPE == 'colorization':
-        input_image = tf.image.rgb_to_grayscale(image)
+        gray_image = tf.image.rgb_to_grayscale(image)
+        input_image = tf.ones((IMG_HEIGHT, IMG_WIDTH, 3))
+        input_image[:, :, 0] = gray_image
+        input_image[:, :, 1] = gray_image
+        input_image[:, :, 2] = gray_image
         real_image = image
     input_image = tf.cast(input_image, tf.float32)
     real_image = tf.cast(real_image, tf.float32)
@@ -37,12 +41,7 @@ def visualize(image_file, augment = False):
     plt.setp(axes.flat, xticks = [], yticks = [])
     for i, ax in enumerate(axes.flat):
         if i % 2 == 0:
-            if DATASET_TYPE == 'colorization':
-                image = input_image.numpy()
-                image = image.reshape(image.shape[0], image.shape[1])
-                ax.imshow(image / 255.0, cmap='gray')
-            else:
-                ax.imshow(input_image.numpy() / 255.0)
+            ax.imshow(input_image.numpy() / 255.0)
             ax.set_xlabel('Input_Image')
         else:
             ax.imshow(real_image.numpy() / 255.0)
