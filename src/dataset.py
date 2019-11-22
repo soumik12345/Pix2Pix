@@ -20,7 +20,7 @@ def load(image_file):
     elif DATASET_TYPE == 'colorization':
         input_image = tf.image.rgb_to_grayscale(image)
         input_image.set_shape([None, None, 1])
-        # input_image = tf.stack([gray_image, gray_image, gray_image], axis = 2)
+        input_image = tf.concat([gray_image, gray_image, gray_image], axis = -1)
         real_image = image
     input_image = tf.cast(input_image, tf.float32)
     real_image = tf.cast(real_image, tf.float32)
