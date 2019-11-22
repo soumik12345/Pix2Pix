@@ -17,7 +17,7 @@ def load(image_file):
         real_image = image[:, : w, :]
         input_image = image[:, w :, :]
     elif DATASET_TYPE == 'colorization':
-        gray_image = tf.squeeze(tf.image.rgb_to_grayscale(image))
+        gray_image = tf.image.rgb_to_grayscale(image)
         gray_image.set_shape([None, None, 3])
         # input_image = tf.stack([gray_image, gray_image, gray_image], axis = 2)
         real_image = image
