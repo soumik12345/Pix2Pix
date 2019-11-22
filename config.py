@@ -8,8 +8,8 @@ LAMBDA = 100 # Recommended By Authors of the paper
 EPOCHS = 150
 ACTIVATION = 'Mish' # Use '' for Default Activations and 'Mish' otherwise
 GENERATOR_ACTIVATION_INDEX = [
-    True, True, True, True, True, True, True, True, # Generator Downsampling Blocks
-    True, True, True, False, False, False, False # Generator Upsampling Blocks
+    False, False, False, False, False, False, False, False, # Generator Downsampling Blocks
+    False, False, False, False, False, False, False # Generator Upsampling Blocks
 ]
 DISCRIMINATOR_ACTIVATION_INDEX = [
     False, False, False, False
