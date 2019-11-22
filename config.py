@@ -1,4 +1,5 @@
 BUFFER_SIZE = 400
+DATASET_TYPE = 'colorization' # 'pix2pix', 'colorization', 'segmentation'
 BATCH_SIZE = 1
 IMG_WIDTH = 256
 IMG_HEIGHT = 256

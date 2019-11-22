@@ -11,10 +11,14 @@ def load(image_file):
     '''
     image = tf.io.read_file(image_file)
     image = tf.image.decode_jpeg(image)
-    w = tf.shape(image)[1]
-    w = w // 2
-    real_image = image[:, : w, :]
-    input_image = image[:, w :, :]
+    if DATASET_TYPE == 'pix2pix':
+        w = tf.shape(image)[1]
+        w = w // 2
+        real_image = image[:, : w, :]
+        input_image = image[:, w :, :]
+    elif DATASET_TYPE == 'colorization':
+        input_image = tf.image.rgb_to_grayscale(image)
+        real_image = image
     input_image = tf.cast(input_image, tf.float32)
     real_image = tf.cast(real_image, tf.float32)
     return input_image, real_image
