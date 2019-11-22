@@ -37,7 +37,12 @@ def visualize(image_file, augment = False):
     plt.setp(axes.flat, xticks = [], yticks = [])
     for i, ax in enumerate(axes.flat):
         if i % 2 == 0:
-            ax.imshow(input_image.numpy() / 255.0)
+            if DATASET_TYPE == 'colorization':
+                image = input_image.numpy()
+                image = image.reshape(image.shape[0], image.shape[1])
+                ax.imshow(image / 255.0)
+            else:
+                ax.imshow(input_image.numpy() / 255.0)
             ax.set_xlabel('Input_Image')
         else:
             ax.imshow(real_image.numpy() / 255.0)
