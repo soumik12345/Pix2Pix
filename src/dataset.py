@@ -40,7 +40,7 @@ def visualize(image_file, augment = False):
             if DATASET_TYPE == 'colorization':
                 image = input_image.numpy()
                 image = image.reshape(image.shape[0], image.shape[1])
-                ax.imshow(image / 255.0)
+                ax.imshow(image / 255.0, cmap='gray')
             else:
                 ax.imshow(input_image.numpy() / 255.0)
             ax.set_xlabel('Input_Image')
