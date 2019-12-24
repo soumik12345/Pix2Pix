@@ -1,6 +1,10 @@
 # Pix2Pix
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/soumik12345/Pix2Pix/master)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/image-to-image-translation-with-conditional/image-to-image-translation-on-aerial-to-map)](https://paperswithcode.com/sota/image-to-image-translation-on-aerial-to-map?p=image-to-image-translation-with-conditional)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/image-to-image-translation-with-conditional/image-to-image-translation-on-cityscapes)](https://paperswithcode.com/sota/image-to-image-translation-on-cityscapes?p=image-to-image-translation-with-conditional)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/image-to-image-translation-with-conditional/image-to-image-translation-on-cityscapes-1)](https://paperswithcode.com/sota/image-to-image-translation-on-cityscapes-1?p=image-to-image-translation-with-conditional)
+
 
 Tensorflow 2.0 Implementation of the paper [Image-to-Image Translation using Conditional GANs](https://arxiv.org/abs/1611.07004) by [Philip Isola](https://arxiv.org/search/cs?searchtype=author&query=Isola%2C+P), [Jun-Yan Zhu](https://arxiv.org/search/cs?searchtype=author&query=Zhu%2C+J), [Tinghui Zhou](https://arxiv.org/search/cs?searchtype=author&query=Zhou%2C+T) and [Alexei A. Efros](https://arxiv.org/search/cs?searchtype=author&query=Efros%2C+A+A).
 
